@@ -1,17 +1,56 @@
-var myParagraph;
+let followMouse;
+let initButton;
+let dontDoThat;
+let img;
+let slider;
 
 function setup() {
-  myParagraph = createP("html");
-  myParagraph.position(0, 0);
-  myParagraph.mouseClicked(makeRed);
+  followMouse = createP("You can't get rid of me");
+  followMouse.position(mouseX, mouseY);
+  followMouse.mouseClicked(makeRed);
+  initButton = createButton("Don't Click Me");
+  initButton.mousePressed(buttonPressed);
+
+  dontDoThat = createP("You were specifically instructed NOT to do that.");
+  dontDoThat.hide();
+
+  img = createImg("/assets/ThumbsUp.jpg", "Good job for not touching the button!");
+  img.position(350, 200);
+
+  slider = createSlider(1, 50, 25);
+  slider.position(250,50);
+  slider.addClass("mySlider");
+  img.doubleClicked(hideText);
+
+
+}
+
+function buttonPressed() {
+   initButton.remove();
+   dontDoThat.show();
+   dontDoThat.style("font-size", "40px");
+   dontDoThat.style("color", "DarkRed");
+   followMouse.html("Why would you do that?");
+   img.position(500, 200);
+   img.attribute("src", "/assets/ThumbsDown.jpg");
+
+}
+
+function hideText(){
+dontDoThat.hide();
+followMouse.hide();
 }
 
 function draw() {
-  myParagraph.position(frameCount % 200, 0);
+
+  followMouse.position(mouseX, mouseY);
+  let textSize = slider.value();
+  followMouse.style("font-size", textSize + "px");
+  dontDoThat.style("font-size", textSize + "px");
 }
 
 function makeRed() {
-  myParagraph.style("color", "red");
+  followMouse.style("color", "red");
 }
 
 /*
