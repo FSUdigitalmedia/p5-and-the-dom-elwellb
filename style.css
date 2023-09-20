@@ -4,6 +4,8 @@ p {
 
 .mySlider {
   width: 300px;
+  
   height: 100px;
+
   rotate: 30deg;
 }

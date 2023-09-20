@@ -22,7 +22,6 @@ function setup() {
   slider.addClass("mySlider");
   img.doubleClicked(hideText);
 
-
 }
 
 function buttonPressed() {
